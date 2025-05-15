@@ -1,13 +1,11 @@
-fn main() {
-    let sentence = "my life";
-    let mut ans=String::from ("");
-    println!("{:?}",sentence.chars());
-    for c in sentence.chars(){
-        ans.push_str(c.to_string().as_str());//here as_str is used when function want &str type in argument
-        // ans.push(c);
-        if c==' '{
-            break
-        }
-    }
-    println!("{}",ans)
+use std::string;
+
+fn main(){
+    let stringmy=String::from("hello");
+    own(stringmy);
+    // own(stringmy.clone());
+    println!("{}",stringmy);
+}
+fn own(stringmy:String){
+println!("{}",stringmy);
 }
