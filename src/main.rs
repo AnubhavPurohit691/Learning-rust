@@ -1,16 +1,11 @@
-enum Shape{
-    Circle(f32),
-    Rectangel(f32,f32)
-}
-fn calculatearea(shape:Shape)->f32{
-match shape{
-    Shape::Circle(radius)=>3.14*radius*radius,
-    Shape::Rectangel(width,height )=>width*height,
-}
-}
+use std::fs;
+
 fn main(){
-let circle= Shape::Circle(5.0);
-let rectangle=Shape::Rectangel(5.0, 5.0);
-println!("{}",calculatearea(circle));
-println!("{}",calculatearea(rectangle));
+let res=fs::read_to_string("example.txt");
+match res {
+    Ok(content)=>Ok(content),
+    Err(_)=>Err("error reading file".to_string())
+};
+println!("printing")
 }
+// go to pdf projects.100xdevs for more example
