@@ -1,13 +1,12 @@
 
 fn main(){
-    let mut stringmy=String::from("hello");
-     stringmy=own(stringmy);
-    // own(stringmy.clone());
-    // println!("{}",stringmy);
-    println!("{}",stringmy);
+    let mut s1=String::from("anubhav");
+    let s2=&s1;//borrowing s1
+    println!("{}",s1);
+    borrowing(&mut s1);
+}
+fn borrowing(s: &mut String){
+s.push_str("purohit");
+}
 
-}
-fn own(stringmy:String)->String{
-println!("{}",stringmy);
-return stringmy
-}
+//you can do 1 mut borrow but if you want to only borrow value u can many
