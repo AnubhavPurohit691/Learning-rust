@@ -1,9 +1,13 @@
-fn main(){
-    let greeting = "anubhav";
-    let char1= greeting.chars().nth(0);
-    match char1 {
-        Some(c)=>println!("{}",c),
-        None=>println!("no character found at")
+fn main() {
+    let sentence = "my life";
+    let mut ans=String::from ("");
+    println!("{:?}",sentence.chars());
+    for c in sentence.chars(){
+        ans.push_str(c.to_string().as_str());//here as_str is used when function want &str type in argument
+        // ans.push(c);
+        if c==' '{
+            break
+        }
     }
-    
+    println!("{}",ans)
 }
