@@ -1,17 +1,16 @@
-// struct are like classes
-struct Rec{
-    height:u8,
-    width:u8
+enum Shape{
+    Circle(f32),
+    Rectangel(f32,f32)
 }
-impl Rec {
-    fn area(&self)->u8{
-       return  &self.height*&self.width
-    }
+fn calculatearea(shape:Shape)->f32{
+match shape{
+    Shape::Circle(radius)=>3.14*radius*radius,
+    Shape::Rectangel(width,height )=>width*height,
+}
 }
 fn main(){
-let rectangle=Rec{
-    height:5,
-    width:5
-};
-println!("{}",rectangle.area())
+let circle= Shape::Circle(5.0);
+let rectangle=Shape::Rectangel(5.0, 5.0);
+println!("{}",calculatearea(circle));
+println!("{}",calculatearea(rectangle));
 }
