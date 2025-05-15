@@ -1,13 +1,17 @@
-struct User{
-    email:String,
-    password:u32
+// struct are like classes
+struct Rec{
+    height:u8,
+    width:u8
+}
+impl Rec {
+    fn area(&self)->u8{
+       return  &self.height*&self.width
+    }
 }
 fn main(){
-    
-let user1=User{
-    email:String::from("anubhav"),
-    password:5,
+let rectangle=Rec{
+    height:5,
+    width:5
 };
-println!("{}",user1.email)
-// tuple struct, unit struct have to learn it
+println!("{}",rectangle.area())
 }
