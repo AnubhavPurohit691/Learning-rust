@@ -1,26 +1,8 @@
 fn main(){
-    // immutable iterator
-    let num = vec![2,3,4];
-    let iter=num.iter();// it borrowing num value and iterit this function do this
-    for i in iter{
-        println!("{}",i);
+    // intolter -> it doesn't borrow it takes ownership of the values.
+    let v1=vec![1,2,];
+    let v1_iter=v1.into_iter();
+    for val in v1_iter{
+        println!("{}",val)
     }
-    println!("{:?}",num);
-
-
-    // mutable iterator
-
-    let mut mutiter=vec![2,3,4,56,6];
-    let  mutiteror= mutiter.iter_mut();
-    for i in mutiteror{
-        *i=*i+1;
-    }
-    println!("{:?}",mutiter);
-
-    // we can do it using like this using next() 
-
-    // while let Some(val) = mutiteror.next(){
-    //     println!("{}",val);
-    // }
-
 }
