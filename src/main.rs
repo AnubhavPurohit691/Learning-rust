@@ -1,16 +1,26 @@
-use std::collections::HashMap;
-
 fn main(){
-let complexhashmap=vec![(String::from("anubhav"),4),(String::from("purohit"),5)];
-let getval= val(complexhashmap);
-println!("{:?}",getval);
-}
+    // immutable iterator
+    let num = vec![2,3,4];
+    let iter=num.iter();// it borrowing num value and iterit this function do this
+    for i in iter{
+        println!("{}",i);
+    }
+    println!("{:?}",num);
 
 
-fn val(v:Vec<(String,u32)> )->HashMap<String,u32>{
-let mut values=HashMap::new();
-for (key,value) in v{
-    values.insert(key,value);
-};
-return values;
+    // mutable iterator
+
+    let mut mutiter=vec![2,3,4,56,6];
+    let  mutiteror= mutiter.iter_mut();
+    for i in mutiteror{
+        *i=*i+1;
+    }
+    println!("{:?}",mutiter);
+
+    // we can do it using like this using next() 
+
+    // while let Some(val) = mutiteror.next(){
+    //     println!("{}",val);
+    // }
+
 }
