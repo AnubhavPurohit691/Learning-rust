@@ -1,13 +1,16 @@
 use std::collections::HashMap;
 
 fn main(){
-    let mut user:HashMap<String,u32>=HashMap::new();
-    user.insert(String::from("age"), 22);
-    user.insert(String::from("newage"), 23);
+let complexhashmap=vec![(String::from("anubhav"),4),(String::from("purohit"),5)];
+let getval= val(complexhashmap);
+println!("{:?}",getval);
+}
 
-    let firstuserage=user.get("age");
-    match firstuserage {
-        Some(age)=>println!(" age is this {}",age),
-        None=>println!("user age not found")
-    }
+
+fn val(v:Vec<(String,u32)> )->HashMap<String,u32>{
+let mut values=HashMap::new();
+for (key,value) in v{
+    values.insert(key,value);
+};
+return values;
 }
