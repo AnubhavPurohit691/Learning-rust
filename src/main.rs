@@ -1,20 +1,13 @@
-fn main (){
-    let mut vec= Vec::new();
-    let number = vec![1,2,4];//another way
-    println!("{:?}",number);
-    vec.push(1);
-    vec.push(2);
-    println!("{:?}",vec);//vec are structs.
-    let nvec=new_vec(vec);
-    println!("{:?}",nvec);
-    // println!("{:?}",vec);//vec are structs.
-}
-fn new_vec(vec:Vec<i32>)->Vec<i32>{
-    let mut nvec=Vec::new();
-    for val in vec{
-        if val%2==0{
-            nvec.push(val);
-        }
+use std::collections::HashMap;
+
+fn main(){
+    let mut user:HashMap<String,u32>=HashMap::new();
+    user.insert(String::from("age"), 22);
+    user.insert(String::from("newage"), 23);
+
+    let firstuserage=user.get("age");
+    match firstuserage {
+        Some(age)=>println!(" age is this {}",age),
+        None=>println!("user age not found")
     }
-return nvec
 }
