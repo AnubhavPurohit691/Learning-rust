@@ -1,11 +1,14 @@
-use std::thread;
+use core::error;
+use std::{sync::mpsc, thread::spawn};
 
-
-fn main(){
-    let mut x =1;
-    thread::spawn(move ||{
-        x=2;
-        println!("{}",x);
-    }).join().unwrap();
-    println!("{}",x);
+fn main (){
+    let (tx,rx)=mpsc::channel();
+    spawn(move ||{
+        tx.send(String::from("hello"));
+    });
+    let value=rx.recv();
+    match value{
+        Ok(value)=>println!("{}",value),
+        Err(err)=>println!("error while reading")
+    }
 }
