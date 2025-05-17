@@ -1,18 +1,30 @@
-fn main (){
-    // slice
-    let  str=String::from("anubhav purohit");
-    let word = &str[0..8];
-    println!("{}",word);
-    let ans = first_word(&str);
-    println!("{}",ans);
+pub trait Summary {
+    fn summarize(&self)->String;
 }
-fn first_word(str :&String)->&str{
-let mut spaceindex=0;
-for i in str.chars(){
-    if i == ' '{
-         break;
+struct User{
+    email:String,
+    name:String
 }
-spaceindex=spaceindex+1;
+impl Summary for User {
+    fn summarize(&self)->String {
+        return format!("user email is {} name is {}",self.email,self.name); // format concatinate  the string
+    }
+}
+fn main(){
+let user = User{
+    email:String::from("anubhav"),
+    name:String::from("anubhavpurohit")
 };
-return &str[0..spaceindex];
+println!("{}",user.summarize());
+notify(user);
 }
+//impl trait
+//trait as parameter
+
+fn notify(u:impl Summary){//this is syntac sugar for below code
+println!("{}",u.summarize());
+}
+
+// fn notify<T:Summary>(items:T){
+//     println!("{}",items.summarize());
+// }
