@@ -1,14 +1,11 @@
 use std::thread;
 
-fn main(){
-let handle=thread::spawn(||{
-    for _i in 0..500000000{
-        println!("hi from spawed");
-    }
-});
 
-for _i in 0..500000000{
-    println!("hi from main")
-};
-handle.join().unwrap();
+fn main(){
+    let mut x =1;
+    thread::spawn(move ||{
+        x=2;
+        println!("{}",x);
+    }).join().unwrap();
+    println!("{}",x);
 }
