@@ -1,30 +1,17 @@
-pub trait Summary {
-    fn summarize(&self)->String;
-}
-struct User{
-    email:String,
-    name:String
-}
-impl Summary for User {
-    fn summarize(&self)->String {
-        return format!("user email is {} name is {}",self.email,self.name); // format concatinate  the string
+fn main(){
+    let longest;
+    let smallstring=String::from("small");
+    {
+        let longerstring=String::from("longer");
+        longest=longestString(&smallstring,&longerstring);
+        println!("{}",longest);
     }
 }
-fn main(){
-let user = User{
-    email:String::from("anubhav"),
-    name:String::from("anubhavpurohit")
-};
-println!("{}",user.summarize());
-notify(user);
-}
-//impl trait
-//trait as parameter
 
-fn notify(u:impl Summary){//this is syntac sugar for below code
-println!("{}",u.summarize());
+fn longestString<'a>(small: &'a String, long: &'a String) -> &'a String { //lifetime 'a where ->'a is intersection of both lifespan.
+    if small.len() > long.len() {
+        return small;
+    } else {
+        return long;
+    }
 }
-
-// fn notify<T:Summary>(items:T){
-//     println!("{}",items.summarize());
-// }
