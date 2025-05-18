@@ -1,22 +1,23 @@
-use std::{sync::mpsc, thread::spawn};
+use std::time::Duration;
 
-fn main(){
-    let (tx,rx)=mpsc::channel();
-    for i in 0..10{
-        let producer=tx.clone();
-        spawn(move||{
-            let mut sum:i64=0;
-            for j in i*10000000..(i+1*10000000)-1{
-                sum=sum+j;
-            }
-            producer.send(sum).unwrap()
-        });
-    }
-    drop(tx); //after thread done its work it will stop this is required other wise consumer think it still sending tx sending the value
-    let mut finalsum:i64=0;
-    for val in rx{
-        finalsum=finalsum+val
-    }
-    println!("{}",finalsum)
+use cached::proc_macro::cached;
+use tokio::time::sleep;
 
+#[cached(time=2)]
+async fn fetchdata(id:i32)->String{
+    println!("first call");
+sleep(Duration::from_secs(2)).await;
+format!("data:{}",id)
+}
+
+
+#[tokio::main]
+ async fn main(){
+let string=fetchdata(2).await;
+println!("recieved:{}",string);
+let string2=fetchdata(2).await;
+println!("recieved:{}",string2);
+sleep(Duration::from_secs(2)).await;
+let string3=fetchdata(2).await;
+println!("string3{}",string3)
 }
